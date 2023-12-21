@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+ 
+ <!-- Logging Properties -->
+    <Properties>
+        <Property name="basePath">./log/OTP_Services_Log</Property>
+    </Properties>
+    
+<Appenders>
+     <!-- Console Appender -->
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n"/>
+        </Console>
+        
+ <RollingFile
+    name="ODServices"
+    fileName="${basePath}/OTPServices.log"
+     filePattern="${basePath}/OTPServices-%d{yyyy-MM-dd}.log"
+    ignoreExceptions="false">
+    <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1} - %m%n</Pattern>
+    </PatternLayout>
+     <Policies>
+		<TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+	</Policies>
+</RollingFile>
+
+</Appenders>
+
+<Loggers>
+    
+    <Logger name="OTPServices" additivity="false"   level="trace">
+            <AppenderRef ref="OTPServices" />
+    </Logger>
+    
+    <Root level="info">
+            <AppenderRef ref="Console"/>
+     </Root>
+
+</Loggers>
+ 
+</Configuration>
